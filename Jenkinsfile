@@ -3,6 +3,11 @@ pipeline {
     options {
         skipStagesAfterUnstable()
     }
+    
+    environment {
+        registry = "288694353266.dkr.ecr.us-east-1.amazonaws.com/jenkins-test"
+    }
+    
     stages {
          stage('Clone repository') { 
             steps { 
@@ -15,7 +20,7 @@ pipeline {
         stage('Build') { 
             steps { 
                 script{
-                 app = docker.build("underwater")
+                 dockerImage = docker.build registry
                 }
             }
         }
