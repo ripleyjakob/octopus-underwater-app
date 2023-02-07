@@ -20,8 +20,7 @@ pipeline {
         stage('Build') { 
             steps { 
                 script{
-                    sh 'printenv'
-                 sh 'docker build -t ecr-demoing.'
+                    console.log("hello");
                 }
             }
         }
