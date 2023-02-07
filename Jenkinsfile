@@ -3,11 +3,7 @@ pipeline {
     options {
         skipStagesAfterUnstable()
     }
-    
-    environment {
-        registry = "288694353266.dkr.ecr.us-east-1.amazonaws.com/jenkins-test"
-    }
-    
+   
     stages {
          stage('Clone repository') { 
             steps { 
@@ -20,7 +16,7 @@ pipeline {
         stage('Build') { 
             steps { 
                 script{
-                    console.log("hello");
+                    app = docker.build("underwater")
                 }
             }
         }
@@ -32,7 +28,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script{
-                        docker.withRegistry('https://288694353266.dkr.ecr.us-east-1.amazonaws.com/jenkins-test', 'ecr:ecr.us-east-1:<Your Jenkins Credentials>') {
+                        docker.withRegistry('https://288694353266.dkr.ecr.us-east-1.amazonaws.com/jenkins-test', 'ecr:ecr.us-east-1:AKIAUGN4GHVZKMXT7DGP,ePCz8Hg5aX7Sp7T7fIdGI7IoEFlCzDGhfewEdTgV') {
                     app.push("${env.BUILD_NUMBER}")
                     app.push("latest")
                     }
