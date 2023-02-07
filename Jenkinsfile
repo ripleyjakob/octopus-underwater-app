@@ -20,7 +20,8 @@ pipeline {
         stage('Build') { 
             steps { 
                 script{
-                 dockerImage = docker.build registry
+                    sh 'printenv'
+                 sh 'docker build -t ecr-demoing.'
                 }
             }
         }
